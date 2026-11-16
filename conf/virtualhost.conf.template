@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    # envsubst cambia estas dos variables por los valores del .env
+    ServerName ${LETS_ENCRYPT_DOMAIN}
+    ServerAdmin ${LETS_ENCRYPT_EMAIL}
+    DocumentRoot /var/www/html/
+    DirectoryIndex index.php index.html
+
+    <Directory /var/www/html>
+        # Permite que Apache lea el .htaccess (lo necesitan los enlaces permanentes de WordPress)
+        AllowOverride All
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
